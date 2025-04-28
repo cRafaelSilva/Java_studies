@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;models.entities&apos; to &apos;model.entities&apos;&#x0D;&#x0A;- Original project: &apos;exception-exercises&apos;&#x0D;&#x0A;- Original element: &apos;exception-exercises/src/models.entities&apos;&#x0D;&#x0A;- Renamed element: &apos;exception-exercises/src/model.entities&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;models.entities&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;models.entities" name="model.entities" qualified="false" references="true" stamp="1745866513839" textual="false" version="1.0"/>
+</session>

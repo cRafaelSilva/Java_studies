@@ -1,0 +1,82 @@
+package model.entities;
+
+import model.exception.DomainException;
+
+public class Account {
+	private Integer number;
+	private String holder;
+	private Double balance;
+	private Double withdrawLimit;
+	private char choice;
+
+	public Account(Integer number, String holder, Double balance, Double withdrawLimit) {
+		if (balance < 0) {
+			throw new DomainException("Impossible to open account with negative values");
+		}
+		this.number = number;
+		this.holder = holder;
+		this.balance = balance;
+		this.withdrawLimit = withdrawLimit;
+	}
+
+	public Integer getNumber() {
+		return number;
+	}
+
+	public void setNumber(Integer number) {
+		this.number = number;
+	}
+
+	public String getHolder() {
+		return holder;
+	}
+
+	public void setHolder(String holder) {
+		this.holder = holder;
+	}
+
+	public Double deposit(double amount) {
+		return balance += amount;
+	}
+
+	public Double withdraw(double amount) {
+		if (amount > withdrawLimit) {
+			throw new DomainException("The amount exceeds withdraw limit");
+		}
+		if (amount > balance) {
+			throw new DomainException("The amount exceeds your current balance");
+		}
+		return balance -= amount;
+	}
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public Double getWithdrawLimit() {
+		return withdrawLimit;
+	}
+
+	public void setWithdrawLimit(Double withdrawLimit) {
+		this.withdrawLimit = withdrawLimit;
+	}
+
+	public char getChoice() {
+		return choice;
+	}
+
+	public void setChose(char choice) {
+		if (choice != 'w' && choice != 'd') {
+			throw new DomainException("Unknown operation. Please enter 'w' for withdraw or 'd' for deposit.");
+		}
+		this.choice = choice;
+	}
+
+	@Override
+	public String toString() {
+		return "Account data: " + "\n Holder: " + holder + "\n Number: " + number + "\n Balance: $"
+				+ String.format("%.2f", balance) + "\n Withdraw Limit: $" + String.format("%.2f", withdrawLimit);
+
+	}
+
+}

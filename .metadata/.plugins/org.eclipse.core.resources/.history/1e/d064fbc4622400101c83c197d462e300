@@ -1,0 +1,59 @@
+package application;
+
+import java.util.Locale;
+import java.util.Scanner;
+
+import model.entities.Account;
+import model.exception.DomainException;
+
+public class Program {
+
+	public static void main(String[] args) {
+
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
+		try {
+			System.out.println("Enter the account data:");
+			System.out.print("Number: ");
+			int number = sc.nextInt();
+			System.out.print("Holder: ");
+			sc.nextLine();
+			String holder = sc.nextLine();
+			System.out.print("Initial Balance: $");
+			double balance = sc.nextDouble();
+			System.out.print("Withdraw Limit: $");
+			double withdrawLimit = sc.nextDouble();
+
+			Account account = new Account(number, holder, balance, withdrawLimit);
+
+			System.out.println(account);
+			System.out.println("What operation do you want?");
+			System.out.println("Please enter w to withdraw or d to deposit a amount");
+			char chose = sc.next().charAt(0);
+			chose = Character.toLowerCase(chose);
+			account.setChose(chose);
+			if (chose == 'w') {
+				System.out.print("Enter the amount for withdraw: $");
+				double amount = sc.nextDouble();
+				account.withdraw(amount);
+			}
+			if (chose == 'd') {
+				System.out.println("Enter the amount for deposit: $");
+				double amount = sc.nextDouble();
+				account.deposit(amount);
+				System.out.println("Update valor: " + account.getBalance());
+			}
+			System.out.println("Uptade datas:\n" + account);
+
+		} 
+		catch (DomainException e) {
+			System.out.println("Error: " + e.getMessage());
+		} 
+		catch (RuntimeException e) {
+			System.out.println("Unexpected error");
+		}
+
+		sc.close();
+	}
+
+}
